@@ -14,7 +14,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
+        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
     </properties>
+    
 
     <dependencies>
         <dependency>
@@ -35,10 +37,14 @@
                     <manifest>
                         <mainClass>org.cx.game.server.WebSocketServer</mainClass>
                     </manifest>
+                    <manifestEntries>
+                        <Implementation-Version>${project.version}-${maven.build.timestamp}</Implementation-Version>
+                    </manifestEntries>
                 </archive>
                 <descriptorRefs>
                     <descriptorRef>jar-with-dependencies</descriptorRef>
                 </descriptorRefs>
+                <finalName>${project.artifactId}-${maven.build.timestamp}</finalName>
             </configuration>
             <executions>
                 <execution>
